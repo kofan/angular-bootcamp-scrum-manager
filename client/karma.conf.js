@@ -48,23 +48,13 @@ module.exports = function(config) {
 
     autoWatch: false,
 
-    ngHtml2JsPreprocessor: {
-      stripPrefix: conf.paths.src + '/',
-      moduleName: 'scrumManager'
-    },
-
     logLevel: 'WARN',
-
-    frameworks: ['phantomjs-shim', 'jasmine', 'angular-filesort'],
-
-    angularFilesort: {
-      whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock).js')]
-    },
 
     browsers : ['PhantomJS'],
 
     plugins : [
       'karma-phantomjs-launcher',
+      'karma-chrome-launcher',
       'karma-angular-filesort',
       'karma-phantomjs-shim',
       'karma-coverage',
@@ -72,12 +62,23 @@ module.exports = function(config) {
       'karma-ng-html2js-preprocessor'
     ],
 
+    frameworks: ['phantomjs-shim', 'jasmine', 'angular-filesort'],
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: conf.paths.src + '/',
+      moduleName: 'scrumManager'
+    },
+
+    angularFilesort: {
+      whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock).js')]
+    },
+
     coverageReporter: {
       type : 'html',
       dir : 'coverage/'
     },
 
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
     proxies: {
       '/assets/': path.join('/base/', conf.paths.src, '/assets/')
@@ -92,20 +93,6 @@ module.exports = function(config) {
   pathSrcHtml.forEach(function(path) {
     configuration.preprocessors[path] = ['ng-html2js'];
   });
-
-  // This block is needed to execute Chrome on Travis
-  // If you ever plan to use Chrome and Travis, you can keep it
-  // If not, you can safely remove it
-  // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
-  if(configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
-    configuration.customLaunchers = {
-      'chrome-travis-ci': {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    };
-    configuration.browsers = ['chrome-travis-ci'];
-  }
 
   config.set(configuration);
 };

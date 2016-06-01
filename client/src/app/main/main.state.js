@@ -14,8 +14,9 @@
         controller: 'MainController',
         controllerAs: 'main',
         resolve: {
-          user: function ($http) {
-            return $http.get('/api/current-user');
+          user: function ($http, $q) {
+            return $q.resolve({ id: null });
+            // return $http.get('/api/current-user');
           }
         }
       });

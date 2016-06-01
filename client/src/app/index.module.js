@@ -17,6 +17,7 @@
       'bcGithub',
       'bcClickOutside',
       'bcPersons',
+      'bcClock',
 
       'scrumManager.main'
     ]);

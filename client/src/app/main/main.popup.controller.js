@@ -8,7 +8,7 @@
   /* @ngInject */
   function MainPopupController($log, r1, r2) {
     var vm = this;
-    vm.title = 'Main Popup Controller...!',
+    vm.title = 'Main Popup Controller...!';
 
     activate();
 

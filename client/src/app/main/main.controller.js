@@ -12,7 +12,7 @@
     vm.title = 'Main Controller...!';
     vm.showPopup = showPopup;
     vm.log = $log.log;
-    
+
     vm.persons = [
       {name: 'Vova0', age: '10'},
       {name: 'Petya0', age: '12'},

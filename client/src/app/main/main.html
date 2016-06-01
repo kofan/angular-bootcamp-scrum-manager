@@ -1,8 +1,10 @@
-<div class="container" bc-test="">
-  {{ main.title }}
+<div class="container">
+  <h1>{{ main.title }}</h1>
 
   <button class="btn btn-default" ng-click="main.showPopup()">Open Popup</button>
   <button class="btn btn-primary" ng-click="main.showSidebar = true">Show Sidebar</button>
+
+  <bc-clock name="Rolex"></bc-clock>
 
   <div class="sidebar"
        ng-show="main.showSidebar"

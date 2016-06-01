@@ -15,7 +15,7 @@
 
     function link(scope, element, attrs) {
       var parsedExpression = $parse(attrs.bcClickOutside);
-      var domDocument = $document.get(0);
+      var domDocument = $document[0];
 
       function clickOutsideHandler(event) {
         if (!element.is(':visible')) {

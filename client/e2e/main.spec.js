@@ -1,21 +1,27 @@
 'use strict';
 
+var parseUrl = require('url').parse;
+
 describe('The main view', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/index.html');
+    browser.get('/');
     page = require('./main.po');
   });
 
-  it('should include jumbotron with correct data', function() {
-    expect(page.h1El.getText()).toBe('\'Allo, \'Allo!');
-    expect(page.imgEl.getAttribute('src')).toMatch(/assets\/images\/yeoman.png$/);
-    expect(page.imgEl.getAttribute('alt')).toBe('I\'m Yeoman');
+  it('should have root url path', function() {
+    browser.getCurrentUrl().then(function (url) {
+      expect(parseUrl(url).hash).toBe('#/');
+    });
   });
 
-  it('should list more than 5 awesome things', function () {
-    expect(page.thumbnailEls.count()).toBeGreaterThan(5);
+  it('should include header with correct title', function() {
+    expect(page.h1El.getText()).toBe('Main Controller...!');
+  });
+
+  it('should list more than 2 persons', function () {
+    expect(page.bcPersonEls.count()).toBeGreaterThan(2);
   });
 
 });

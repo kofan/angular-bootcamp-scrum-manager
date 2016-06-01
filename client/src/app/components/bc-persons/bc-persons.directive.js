@@ -16,8 +16,8 @@
         items: '<'
       },
       template: [
-        '<ul>',
-          '<li ng-repeat="item in items">',
+        '<ul class="bcPersons">',
+          '<li class="bcPersons__item" ng-repeat="item in items">',
             '<bc-persons-transclude />',
           '</li>',
         '</ul>'
